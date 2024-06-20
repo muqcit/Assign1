@@ -1,25 +1,27 @@
-name: Deploy-TO-Azure-WebApp-Service
+name: Deploy to Azure App Service
 
 on:
   push:
     branches:
-      - Assign1
+      - master
 
 jobs:
-  built-and-deploy:
-    runs-on: ubantu latest
+  build-and-deploy:
+    runs-on: ubuntu-latest
     steps:
-      - name: checkout source
-        uses: actions/checkout@v3
-      - name: setup node.js version
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Setup Node.js version
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
-      - name: install dependencies 
+      - name: Install Dependencies
         run: npm install
-      - name: Deploy-TO-Azure-WebApp-Service
-        uses: azure/webapps-deploy@v2
+      - name: Build Next.js Application
+        run: npm run build
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v4
         with:
           app-name: new-assign1
-          publish-profile: ${{ secrets.AZURE }}
-          pakage: .
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: .
