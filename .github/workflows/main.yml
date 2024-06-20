@@ -18,7 +18,7 @@ jobs:
       - name: install dependencies 
         run: npm install
       - name: Deploy-TO-Azure-WebApp-Service
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
           app-name: new-assign1
           publish-profile: ${{ secrets.AZURE }}
