@@ -1,0 +1,25 @@
+name: Deploy-TO-Azure-WebApp-Service
+
+on:
+  push:
+    branches:
+      - Assign1
+
+jobs:
+  built-and-deploy:
+    runs-on: ubantu latest
+    steps:
+      - name: checkout source
+        uses: actions/checkout@v3
+      - name: setup node.js version
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+      - name: install dependencies 
+        run: npm install
+      - name: Deploy-TO-Azure-WebApp-Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: new-assign1
+          publish-profile: ${{ secrets.AZURE }}
+          pakage: .
