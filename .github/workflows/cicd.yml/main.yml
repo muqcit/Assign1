@@ -1,6 +1,6 @@
 name: Deploy-TO-Azure-WebApp-Service
 
-on:
+on: [push]
   push:
     branches:
       - Assign1
